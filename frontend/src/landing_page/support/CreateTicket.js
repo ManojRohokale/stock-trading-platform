@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 
+// Component: CreateTicket (Support Ticket Form)
 const CreateTicket = () => {
+  // useState hook → stores form input values in state
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: "",    // user's full name
+    email: "",   // user's email
+    subject: "", // issue subject/title
+    message: "", // detailed description
   });
 
+  // Handle input changes → updates state dynamically for each field
   const handleChange = (e) => {
+    // Spread operator keeps old values, only updates the changed field
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submit
   const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("✅ Ticket submitted successfully!");
-    // In real app → send formData to backend API
+    e.preventDefault(); // prevent page reload
+    alert("✅ Ticket submitted successfully!"); // feedback message
+
+    // In real application → send formData to backend API here
+
+    // Reset form fields after submission
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -26,11 +34,15 @@ const CreateTicket = () => {
           <div className="col-lg-8">
             <div className="card shadow border-0">
               <div className="card-body p-4">
+                {/* Form heading */}
                 <h3 className="fw-bold mb-4 text-center">
                   Create Support Ticket
                 </h3>
+
+                {/* Form starts here */}
                 <form onSubmit={handleSubmit}>
-                  {/* Name */}
+
+                  {/* Name Input */}
                   <div className="mb-3">
                     <label className="form-label fw-semibold">Full Name</label>
                     <input
@@ -44,7 +56,7 @@ const CreateTicket = () => {
                     />
                   </div>
 
-                  {/* Email */}
+                  {/* Email Input */}
                   <div className="mb-3">
                     <label className="form-label fw-semibold">Email</label>
                     <input
@@ -58,7 +70,7 @@ const CreateTicket = () => {
                     />
                   </div>
 
-                  {/* Subject */}
+                  {/* Subject Input */}
                   <div className="mb-3">
                     <label className="form-label fw-semibold">Subject</label>
                     <input
@@ -72,7 +84,7 @@ const CreateTicket = () => {
                     />
                   </div>
 
-                  {/* Message */}
+                  {/* Message Textarea */}
                   <div className="mb-3">
                     <label className="form-label fw-semibold">Description</label>
                     <textarea
@@ -86,13 +98,14 @@ const CreateTicket = () => {
                     ></textarea>
                   </div>
 
-                  {/* Submit */}
+                  {/* Submit Button */}
                   <div className="d-grid">
                     <button type="submit" className="btn btn-primary btn-lg">
                       Submit Ticket
                     </button>
                   </div>
                 </form>
+                {/* Form ends here */}
               </div>
             </div>
           </div>
@@ -102,4 +115,5 @@ const CreateTicket = () => {
   );
 };
 
+// Export component so it can be used in other files
 export default CreateTicket;
